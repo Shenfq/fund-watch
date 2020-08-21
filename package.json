@@ -24,6 +24,7 @@
     "watch": "webpack --mode none --watch",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
+    "release": "vsce publish",
     "vscode:prepublish": "npm run build"
   },
   "devDependencies": {
