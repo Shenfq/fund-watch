@@ -17,6 +17,7 @@
   ],
   "author": "shenfq",
   "license": "MIT",
+  "repository": "https://github.com/Shenfq/fund-watch.git",
   "main": "./out/extension.js",
   "scripts": {
     "build": "tsc -p ./",
