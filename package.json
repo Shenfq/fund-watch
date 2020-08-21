@@ -47,6 +47,7 @@
     "string-width": "^4.2.0",
     "vsce": "^1.76.1"
   },
+  "icon": "images/icon.png",
   "activationEvents": [
     "onView:fund-list",
     "onCommand:fund.add",

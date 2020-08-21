@@ -7,3 +7,5 @@ webpack.config.js
 .gitignore
 .eslintrc.js
 .prettierrc.js
+
+*.map
