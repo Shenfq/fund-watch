@@ -2,6 +2,7 @@ import { ExtensionContext, commands, window, workspace } from 'vscode'
 import Provider from './data/Provider'
 import fundHandle from './data/Handle'
 
+// 激活插件
 export function activate(context: ExtensionContext) {
   let interval = workspace.getConfiguration().get('fund-watch.interval', 2)
   if (interval < 2) {
