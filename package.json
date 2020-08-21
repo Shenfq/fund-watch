@@ -1,0 +1,147 @@
+{
+  "name": "fund-watch",
+  "version": "1.0.0",
+  "description": "实时查看基金行情",
+  "publisher": "shenfq",
+  "engines": {
+    "vscode": "^1.41.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "基金",
+    "指数",
+    "行情",
+    "A股"
+  ],
+  "author": "shenfq",
+  "license": "MIT",
+  "main": "./out/extension.js",
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "eslint ./src --ext .ts --fix",
+    "vscode:prepublish": "npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^10.14.17",
+    "@types/vscode": "^1.41.0",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.5.0",
+    "string-width": "^4.2.0",
+    "vsce": "^1.76.1"
+  },
+  "activationEvents": [
+    "onView:fund-list",
+    "onCommand:fund.add",
+    "onCommand:fund.order",
+    "onCommand:fund.refresh",
+    "onCommand:fund.item.remove"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "fund-watch",
+      "properties": {
+        "fund-watch.favorites": {
+          "type": "array",
+          "default": [
+            "163407",
+            "161017"
+          ],
+          "description": "自选基金列表，值为基金代码"
+        },
+        "fund-watch.interval": {
+          "type": "number",
+          "default": 2,
+          "description": "刷新时间，单位为秒，默认 2 秒"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "fund.add",
+        "title": "新增",
+        "icon": {
+          "light": "images/light/add.svg",
+          "dark": "images/dark/add.svg"
+        }
+      },
+      {
+        "command": "fund.order",
+        "title": "排序",
+        "icon": {
+          "light": "images/light/order.svg",
+          "dark": "images/dark/order.svg"
+        }
+      },
+      {
+        "command": "fund.refresh",
+        "title": "刷新",
+        "icon": {
+          "light": "images/light/refresh.svg",
+          "dark": "images/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "fund.item.remove",
+        "title": "删除"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "fund.add",
+          "when": "view == fund-list",
+          "group": "navigation"
+        },
+        {
+          "command": "fund.order",
+          "when": "view == fund-list",
+          "group": "navigation"
+        },
+        {
+          "command": "fund.refresh",
+          "when": "view == fund-list",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "fund.item.remove",
+          "when": "view == fund-list",
+          "group": "inline"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "fund-watch",
+          "title": "FUND WATCH",
+          "icon": "images/fund.svg"
+        }
+      ]
+    },
+    "views": {
+      "fund-watch": [
+        {
+          "name": "",
+          "id": "fund-list"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<svg width="1024" height="1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+ <defs>
+  <style type="text/css"/>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="6828.666667" height="6828.666667" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <g stroke="null" id="svg_16">
+   <g stroke="null" transform="matrix(7.234524245852512,0,0,7.682208227309424,-23619.62894922031,-26132.887489174016) " id="svg_15">
+    <title stroke="null" transform="translate(0.4607536196708679,0.21695150434970856) translate(-3.543333053588867,-2.165564775466919) translate(0,-4.547473508864641e-13) translate(-549.0963134765625,-494.7460632324219) translate(-1.9894795417785645,-1.7860867977142334) translate(3816.445068359375,0) translate(0,3906.445068359375) ">Layer 1</title>
+    <defs stroke="null" transform="translate(0.4607536196708679,0.21695150434970856) translate(-3.543333053588867,-2.165564775466919) translate(0,-4.547473508864641e-13) translate(-549.0963134765625,-494.7460632324219) translate(-1.9894795417785645,-1.7860867977142334) translate(3816.445068359375,0) translate(0,3906.445068359375) ">
+     <style stroke="null" type="text/css"/>
+    </defs>
+    <g stroke="null" id="svg_8">
+     <path stroke="null" d="m3265.952606,3409.996389l0,72.434594l12.93041,-13.51543l0,-45.403735l113.787612,0l0,91.904923l-113.787612,0l0,-12.136856c28.446903,-30.058316 -0.343949,0.267606 28.361562,-29.733946l23.316116,24.327774l36.249113,-37.843203l0,20.246114l12.93041,0l0,-43.249375l-41.377314,0l0,13.51543l19.134421,0l-27.021972,28.252654l-23.215259,-24.343992c-26.721986,27.936393 -25.790997,26.436181 -41.307489,43.268297l0,31.212534l139.648433,0l0,-118.935782l-139.648433,0l0.000002,-0.000001z" fill="#565D64" id="svg_9"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
