@@ -10,7 +10,8 @@ export interface FundInfo {
   changeAmount: string
 }
 
-const request = async (url: string): Promise<any> => {
+// 请求
+const request = async (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
       const chunks: Buffer[] = []
