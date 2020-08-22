@@ -1,6 +1,6 @@
 {
   "name": "fund-watch",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "实时查看基金行情",
   "publisher": "shenfq",
   "engines": {
