@@ -11,8 +11,15 @@ export function activate(context: ExtensionContext) {
 
   // 基金类
   const provider = new Provider()
+
   // 数据注册
   window.registerTreeDataProvider('fund-list', provider)
+
+  // 定时任务
+  setInterval(() => {
+    provider.refresh()
+  }, interval * 1000)
+
   // menu 事件
   context.subscriptions.push(
     commands.registerCommand(`fund.add`, () => {
@@ -23,15 +30,7 @@ export function activate(context: ExtensionContext) {
     }),
     commands.registerCommand(`fund.refresh`, () => {
       provider.refresh()
-    })
-  )
-  // 定时任务
-  setInterval(() => {
-    provider.refresh()
-  }, interval * 1000)
-
-  // 事件绑定
-  context.subscriptions.push(
+    }),
     commands.registerCommand('fund.item.remove', (fund) => {
       const {
         info: { code },

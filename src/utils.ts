@@ -1,36 +1,20 @@
 import * as https from 'https'
 import * as stringWidth from 'string-width'
 
-export interface FundInfo {
-  now: string
-  name: string
-  code: string
-  lastClose: string
-  changeRate: string
-  changeAmount: string
-}
-
 // 请求
 const request = async (url: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
-      const chunks: Buffer[] = []
+      let chunks = ''
       if (!res || res.statusCode !== 200) {
         reject(new Error('网络请求错误!'))
         return
       }
-      res.on('data', (chunk) => chunks.push(chunk))
+      res.on('data', (chunk) => {
+        chunks += chunk.toString('utf8')
+      })
       res.on('end', () => {
-        let encode = 'utf8'
-        const buff: Buffer = Buffer.concat(chunks)
-        const contentType: void | String = res.headers['content-type']
-        if (contentType) {
-          const matchCharset = contentType.match(/(?:charset=)(\w+)/)
-          encode = matchCharset ? matchCharset[1] : 'utf8'
-        }
-        // buffer to string
-        const body = buff.toString(encode)
-        resolve(body)
+        resolve(chunks)
       })
     })
   })

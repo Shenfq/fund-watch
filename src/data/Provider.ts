@@ -1,13 +1,13 @@
-import { window, EventEmitter, Event, TreeDataProvider, TreeItem } from 'vscode'
+import { window, Event, EventEmitter, TreeDataProvider } from 'vscode'
 import { fundApi } from '../utils'
 import fundHandle from './Handle'
 // eslint-disable-next-line no-unused-vars
 import FundItem from './TreeItem'
 
-export default class DataProvider implements TreeDataProvider<FundItem> {
-  public refreshEvent: EventEmitter<FundItem | null> = new EventEmitter<FundItem | null>()
+export default class DataProvider implements TreeDataProvider<FundInfo> {
+  public refreshEvent: EventEmitter<FundInfo | null> = new EventEmitter<FundInfo | null>()
 
-  readonly onDidChangeTreeData: Event<FundItem | null> = this.refreshEvent.event
+  readonly onDidChangeTreeData: Event<FundInfo | null> = this.refreshEvent.event
 
   private order: number
 
@@ -22,12 +22,17 @@ export default class DataProvider implements TreeDataProvider<FundItem> {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getTreeItem(element: FundItem): TreeItem {
-    return element
+  getTreeItem(info: FundInfo): FundItem {
+    return new FundItem(info)
   }
 
-  getChildren(): Promise<FundItem[]> {
-    return fundHandle.getFavorites(this.order)
+  getChildren(): Promise<FundInfo[]> {
+    const { order } = this
+    return fundHandle.getFavorites().then((infos) =>
+      infos.sort(({ changeRate: a = 0 }, { changeRate: b = 0 }) => {
+        return (+a >= +b ? 1 : -1) * order
+      })
+    )
   }
 
   changeOrder(): void {
@@ -54,12 +59,10 @@ export default class DataProvider implements TreeDataProvider<FundItem> {
       const newFunds: string[] = [...codeArray]
       const result = await fundApi(newFunds)
       if (result && result.length > 0) {
-        result.forEach((fundInfo) => {
-          if (fundInfo) {
-            fundHandle.updateConfig(newFunds)
-            this.refresh()
-          }
-        })
+        // 只更新能正常请求的代码
+        const codes = result.map((i) => i.code)
+        fundHandle.updateConfig(codes)
+        this.refresh()
       } else {
         window.showWarningMessage('stocks not found')
       }
