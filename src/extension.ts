@@ -32,9 +32,7 @@ export function activate(context: ExtensionContext) {
       provider.refresh()
     }),
     commands.registerCommand('fund.item.remove', (fund) => {
-      const {
-        info: { code },
-      } = fund
+      const { code } = fund
       fundHandle.removeConfig(code)
       provider.refresh()
     })
